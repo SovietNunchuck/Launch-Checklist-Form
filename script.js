@@ -11,34 +11,40 @@ window.addEventListener("load", function(){
       let launchStatus = document.getElementById("launchStatus");
       let fuelStatus = document.getElementById("fuelStatus");
       let cargoStatus = document.getElementById("cargoStatus");
+
+      let ready = true;
       
       if (pilotName === "" || copilotName === "" || fuelLevel === "" || cargoMass === ""){
          alert("Please check your submission. All fields are required.");
+         return;
       }
       if (typeof pilotName !== "string"){
          alert(`${invalidData}Pilot Name`);
+         return;
       }
       if (typeof copilotName !== "string"){
          alert(`${invalidData}Copilot Name`);
+         return;
       }
       if (isNaN(Number(fuelLevel))){
          alert(`${invalidData}Fuel Level`);
+         return;
       }
       if (isNaN(Number(cargoMass))){
          alert(`${invalidData}Cargo Mass`);
+         return;
       }
 
       document.getElementById("pilotStatus").innerHTML = `Pilot ${pilotName} is ready for launch`;
       document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilotName} is ready for launch`;
       
-      let ready = true;
 
       if (Number(fuelLevel) >= 0 && Number(fuelLevel) < 10000 && fuelLevel !== "") {
          faultyItems.style.visibility = "visible";
          fuelStatus.innerHTML = `Fuel level too low for launch`;
          launchStatus.innerHTML = `Shuttle not ready for launch`;
          launchStatus.style.color = "red";
-         ready = false;         
+         ready = false;  
       }
 
       if (Number(cargoMass) >= 10000) {

@@ -40,46 +40,48 @@ window.addEventListener("load", function(){
       
       if (pilotName === "" || copilotName === "" || fuelLevel === "" || cargoMass === ""){
          alert("Please check your submission. All fields are required.");
-      }
-      if (!isNaN(Number(pilotName))){
-         alert(`${invalidData}Pilot Name`);
-         pilotStatus.innerHTML = "No pilot assigned";
-         ready = false;
-      }
-      if (!isNaN(Number(copilotName))){
-         alert(`${invalidData}Copilot Name`);
-         copilotStatus.innerHTML = "No copilot assigned";
-         ready = false;
-      }
-      if (isNaN(Number(fuelLevel))){
-         alert(`${invalidData}Fuel Level`);
-   
-      }
-      if (isNaN(Number(cargoMass))){
-         alert(`${invalidData}Cargo Mass`);   
-      }
-      
+      } else {
+         if (!isNaN(Number(pilotName))){
+            alert(`${invalidData}Pilot Name`);
+            pilotStatus.innerHTML = "No pilot assigned";
+            ready = false;
+         }
+         if (!isNaN(Number(copilotName))){
+            alert(`${invalidData}Copilot Name`);
+            copilotStatus.innerHTML = "No copilot assigned";
+            ready = false;
+         }
+         if (isNaN(Number(fuelLevel))){
+            alert(`${invalidData}Fuel Level`);
+            ready = false;      
+         }
+         if (isNaN(Number(cargoMass))){
+            alert(`${invalidData}Cargo Mass`);
+            ready = false;
+         }
+         
 
-      if (Number(fuelLevel) >= 0 && Number(fuelLevel) < 10000 && fuelLevel !== "") {
-         faultyItems.style.visibility = "visible";
-         fuelStatus.innerHTML = `Fuel level too low for launch`;
-         launchStatus.innerHTML = `Shuttle not ready for launch`;
-         launchStatus.style.color = "red";
-         ready = false;  
-      }
+         if (Number(fuelLevel) >= 0 && Number(fuelLevel) < 10000 && fuelLevel !== "") {
+            faultyItems.style.visibility = "visible";
+            fuelStatus.innerHTML = `Fuel level too low for launch`;
+            launchStatus.innerHTML = `Shuttle not ready for launch`;
+            launchStatus.style.color = "red";
+            ready = false;  
+         }
 
-      if (Number(cargoMass) >= 10000) {
-         faultyItems.style.visibility = "visible";
-         cargoStatus.innerHTML = `Cargo mass too heavy for launch`;
-         launchStatus.innerHTML = `Shuttle not ready for launch`;
-         launchStatus.style.color = "red";
-         ready = false;
-      }
+         if (Number(cargoMass) >= 10000) {
+            faultyItems.style.visibility = "visible";
+            cargoStatus.innerHTML = `Cargo mass too heavy for launch`;
+            launchStatus.innerHTML = `Shuttle not ready for launch`;
+            launchStatus.style.color = "red";
+            ready = false;
+         }
 
-      if (ready) {
-         faultyItems.style.visibility = "hidden";
-         launchStatus.innerHTML = `Shuttle is ready for launch`;
-         launchStatus.style.color = "green";
+         if (ready) {
+            faultyItems.style.visibility = "hidden";
+            launchStatus.innerHTML = `Shuttle is ready for launch`;
+            launchStatus.style.color = "green";
+         }
       }
       event.preventDefault();
    });
